@@ -16,7 +16,7 @@ RUN npm install -g bun
 
 WORKDIR /app
 
-COPY bun.lockb package.json tsconfig.json ./
+COPY bun.lock package.json tsconfig.json ./
 RUN bun install
 COPY prisma ./prisma
 COPY src ./src
