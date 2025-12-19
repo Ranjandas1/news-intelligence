@@ -11,3 +11,14 @@ COPY prisma ./prisma
 RUN bunx prisma generate
 
 CMD ["bun", "src/server.ts"]
+FROM node:20-slim
+RUN npm install -g bun
+
+WORKDIR /app
+
+COPY bun.lockb package.json tsconfig.json ./
+RUN bun install
+COPY prisma ./prisma
+COPY src ./src
+RUN bunx prisma generate
+CMD ["bun", "src/server.ts"]
